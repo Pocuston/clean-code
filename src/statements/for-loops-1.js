@@ -1,6 +1,6 @@
 // noinspection JSUnusedGlobalSymbols
 
-_prepareSearchStoreSorterMap(dtoIn, searchBuilder) {
+function _prepareSearchStoreSorterMap(dtoIn, searchBuilder) {
   const issuing = "LastIssuingDate";
   const issue = "LastIssueDate";
   const accountHolderForScheme = "AccountHolderForScheme";
@@ -9,7 +9,7 @@ _prepareSearchStoreSorterMap(dtoIn, searchBuilder) {
     let sorterMap = new Map();
 
     let scheme;
-    dtoIn.sorterList.forEach(sorter => {
+    dtoIn.sorterList.forEach((sorter) => {
       if (sorter.key.endsWith(issuing)) {
         scheme = sorter.key.substr(0, sorter.key.length - issuing.length);
         sorterMap.set(`${scheme}LastIssuingDate`, `lastIssuing.${scheme}.lastIssuingDate`);
@@ -30,18 +30,18 @@ _prepareSearchStoreSorterMap(dtoIn, searchBuilder) {
     sorterMap.set("technologyCode", "typeOfInstallation");
     sorterMap.set("fuelCode", "energySource");
 
-    dtoIn.sorterList.forEach(sorterItem => {
+    dtoIn.sorterList.forEach((sorterItem) => {
       if (sorterMap.get(sorterItem.key)) {
         if (sorterItem.key.endsWith(accountHolderForScheme)) {
           newSorterList.push({
             key: sorterMap.get(sorterItem.key),
             descending: sorterItem.descending,
-            nested: this._prepareNestedParam(sorterMap.get(sorterItem.key), {})
+            nested: this._prepareNestedParam(sorterMap.get(sorterItem.key), {}),
           });
         } else {
           newSorterList.push({
             key: sorterMap.get(sorterItem.key),
-            descending: sorterItem.descending
+            descending: sorterItem.descending,
           });
         }
       } else {
