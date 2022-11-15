@@ -13,7 +13,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "uu_appg01_server": "^5.0.0",
     "decimal.js": "3.0.0"
   },
   "devDependencies": {
